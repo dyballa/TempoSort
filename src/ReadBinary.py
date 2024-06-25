@@ -16,7 +16,7 @@ def chunk_generator(data, chunk_size):
         end = min(start + chunk_size, num_samples)
         start, end = start - overlap, end + overlap
         chunk = [row[start:end] for row in data]
-        yield chunk
+        yield np.array(chunk) 
     
 
 

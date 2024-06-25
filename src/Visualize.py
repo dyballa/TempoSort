@@ -41,3 +41,14 @@ def combined_channel_plot(dataset, begin_interval, end_interval):
         plt.plot(times, dataset[i, begin_interval:end_interval] + i * 15)
     plt.show()
 
+def plot_channel_spikes(data, spikes, channel, begin_interval, end_interval):
+    plt.figure()
+    #overlap  
+    extract_ampitudes_filtered = data[channel, begin_interval:end_interval]
+    extract_ampitudes_spikes = spikes[channel, begin_interval:end_interval]
+    times = np.arange(0, len(extract_ampitudes_spikes))
+    plt.plot(times, extract_ampitudes_filtered, label = 'Spikes')
+    plt.plot(times, extract_ampitudes_spikes, label='Filtered Data') 
+    plt.show()
+
+
