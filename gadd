@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define the maximum file size in bytes (200 MB)
-MAX_SIZE=$((200 * 1024 * 1024))
+MAX_SIZE=$((99 * 1024 * 1024))
 
 # Find all files under MAX_SIZE bytes and stage changes
 find . -type f -size -${MAX_SIZE}c -exec git add {} +
 
-echo "Staged changes for files under 200 MB."
+echo "Staged changes for files under 100 MB."
 
