@@ -54,3 +54,7 @@ def detect_spikes(matrix, threshold):
           
 
     return result_matrix
+
+def detection_score(spikes, gc_spikes):
+    #tofix
+    return

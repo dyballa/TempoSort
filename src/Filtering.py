@@ -3,14 +3,19 @@ from scipy import signal
 
 ## Moving average filters
 
-def moving_average_lowpass_filter(x, low_cut, sampling_rate, window_size=None):
+def moving_average_lowpass_filter(x, low_cut, sampling_rate, window_size=None, stride=1):
     if window_size is None:
         filter_length = int(np.ceil(sampling_rate / low_cut))
     else:
         filter_length = window_size
         
     b = (np.ones(filter_length)) / filter_length
-    return signal.convolve(x, b, mode='same')
+    filtered_signal = signal.convolve(x, b, mode='same')
+    
+    if stride > 1:
+        filtered_signal = filtered_signal[::stride]
+    
+    return filtered_signal
 
 
 import numpy as np

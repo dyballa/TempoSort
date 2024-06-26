@@ -51,4 +51,10 @@ def plot_channel_spikes(data, spikes, channel, begin_interval, end_interval):
     plt.plot(times, extract_ampitudes_spikes, label='Filtered Data') 
     plt.show()
 
+def plot_sorted_compared_gamma(sorted, gamma, neurons):
+    plt.figure()
+    times = np.arrange(0, len(sorted))
+    #TODO: Add plotting functionality
+    plt.plot(times, gamma)
+    plt.plot(times, )
 

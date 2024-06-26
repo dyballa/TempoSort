@@ -9,15 +9,21 @@ import matplotlib.animation as animation
 import numpy as np
 import time
 
-sample_data = 'data/2017_rat_hippocampus/bin_2017'
+sample_data = 'data/2017_rat_hippocampus/decompressed_files'
 channel_map = 'data/2017_rat_hippocampus/map_channels' 
 channel_locations = 'data/2017_rat_hippocampus/channel_locations'
+spike_times = 'data/2017_rat_hippocampus/spike_times'
+spike_clusters ='data/2017_rat_hippocampus/spike_clusters' 
 fs = 30000
 
 def main(sample_data, channel_map, fs):
-    raw_data = read_dataset(sample_data, channel_map)
-    chunk_iterator = chunk_generator(raw_data, 300)
-    animate_chunk(raw_data, chunk_iterator, 1, fs)
+    chunked_data = read_directly_to_chunks(sample_data)
+    print(next(chunked_data).shape)
+    #gamma_comparison(raw_data, fs, spike_times)
+    # print(np.load(spike_times, mmap_mode="r"))
+    # print(np.load(spike_clusters, mmap_mode="r"))
+    # timeslice_iterator = timeslice_generator(raw_data, 300)
+    # animate_timeslice(raw_data, timeslice_iterator, 1, fs)
  
 
 ## Visualize moving average vs. butterworth filtering for LFP 
@@ -55,7 +61,7 @@ def compare_detect_spikes(test_matrix):
     plot_channel_spikes(test_matrix, mv_spikes, 1, 0, 5000)
 
 ## Live plotting of spiking data at Channel 
-def animate_chunk(raw_data, chunk_iterator, channel, fs):
+def animate_timeslice(raw_data, timeslice_iterator, channel, fs):
     fig, ax = plt.subplots()
     x_data, y_data = [], []
     line, = ax.plot([], [], lw=2)
@@ -66,18 +72,18 @@ def animate_chunk(raw_data, chunk_iterator, channel, fs):
     def update(frame):
 
         try:
-            chunk = next(chunk_iterator)
+            timeslice = next(timeslice_iterator)
         except StopIteration:
             return line,
         start_time = time.time()
-        filtered_chunk = capture_action_potential(chunk, fs)
-        spikes = detect_spikes(filtered_chunk, 20)
+        filtered_timeslice = capture_action_potential(timeslice, fs)
+        spikes = detect_spikes(filtered_timeslice, 20)
         end_time = time.time()
         timing_array.append(end_time - start_time)
         channel_spikes = spikes[channel]
 
        
-        x_data.extend(range(len(x_data), len(x_data) + len(chunk[0])))
+        x_data.extend(range(len(x_data), len(x_data) + len(timeslice[0])))
         y_data.extend(channel_spikes)
 
         
@@ -91,8 +97,59 @@ def animate_chunk(raw_data, chunk_iterator, channel, fs):
 
     ani = animation.FuncAnimation(fig, update, blit=True, cache_frame_data=False)
     plt.show()
-    # time to process each 10ms chunk
+    # time to process each 10ms timeslice
     print(timing_array)
+
+def param_sweep_filtering(raw_data, fs, gc_spikes):
+    detection_threshold = np.sqrt(np.mean(np.array(raw_data)** 2))
+    spike_scores = []
+    for window in range(30, 500, 20):
+        for stride in range(1, 15, 1):
+            filtered_data = moving_average_lowpass_filter(raw_data, 300, fs, window_size=window, stride=stride)
+            spikes = detect_spikes(filtered_data, detection_threshold)
+            score = detection_score(spikes, gc_spikes)
+            spike_scores.append(window, stride, score)
+    plt.figure()
+    window_sizes = spike_scores[:, 0]
+    strides = spike_scores[:, 1]
+    scores = spike_scores[:, 2]
+
+    plt.figure(figsize=(10, 8))
+    scatter = plt.scatter(window_sizes, strides, c=scores, cmap='viridis')
+
+    plt.colorbar(scatter)
+
+    plt.xlabel('Window Size')
+    plt.ylabel('Stride')
+    plt.title('Accuracy of Spike Detection with Varying Parameters')
+
+    plt.show()
+
+def gamma_comparison(raw_data, fs,):
+    gamma = capture_gamma(raw_data, fs)
+    spike_cluster_times = format_output(spike_times, spike_clusters)
+    times = np.arrange(0, 1000)
+    first_cluster = [time for time in spike_cluster_times[1]]
+    plt.figure()
+    plt.plot(times, gamma[:1000])
+    plt.plot(times, first_cluster[:1000])
+    plt.legend(['Gamma', 'First Cluster'])
+    plt.xlabel('Time (ms)')
+    plt.ylabel('Amplitude')
+    plt.show()
+
+def format_output(path_to_spike_time, path_to_spike_clusters):
+    spike_times = np.load(path_to_spike_time, mmap_mode="r")
+    spike_clusters = np.load(path_to_spike_clusters, mmap_mode="r")
+    spike_times = spike_times.flatten()
+    spike_clusters = spike_clusters.flatten()
+    spike_dict = {}
+    for i in range(len(spike_times)):
+        if spike_clusters[i] in spike_dict:
+            spike_dict[spike_clusters[i]].append(spike_times[i])
+        else:
+            spike_dict[spike_clusters[i]] = [spike_times[i]]
+    return spike_dict
 
 ##experiments with spike_interface
 
