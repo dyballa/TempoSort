@@ -80,7 +80,7 @@ def capture_beta(x, sampling_rate):
     return(bandpass_every_channel(x, 13, 30, sampling_rate))
 
 def capture_gamma(x, sampling_rate):
-    return(bandpass_every_channel(x, 30, 150, sampling_rate))
+    return(bandpass_every_channel(x, 30, 100, sampling_rate))
 
 ## Spike functions
 

@@ -18,8 +18,8 @@ fs = 30000
 
 def main(sample_data, channel_map, fs):
     chunked_data = read_directly_to_chunks(sample_data)
-    print(next(chunked_data).shape)
-    #gamma_comparison(raw_data, fs, spike_times)
+    first_chunk = next(chunked_data)
+    gamma_comparison(first_chunk, fs, spike_times, spike_clusters)
     # print(np.load(spike_times, mmap_mode="r"))
     # print(np.load(spike_clusters, mmap_mode="r"))
     # timeslice_iterator = timeslice_generator(raw_data, 300)
@@ -125,14 +125,26 @@ def param_sweep_filtering(raw_data, fs, gc_spikes):
 
     plt.show()
 
-def gamma_comparison(raw_data, fs,):
-    gamma = capture_gamma(raw_data, fs)
+def gamma_comparison(raw_data, fs, spike_times, spike_clusters, start=0, end=7500):
+
+    length_of_interval = end - start
+
+    full_gamma = capture_gamma(raw_data, fs)
+    gamma_on_channel = full_gamma[1]
+    gamma = gamma_on_channel[start:end]
+
+
     spike_cluster_times = format_output(spike_times, spike_clusters)
-    times = np.arrange(0, 1000)
-    first_cluster = [time for time in spike_cluster_times[1]]
+    
+    first_cluster = [time for time in spike_cluster_times[1056]]
+    first_cluster_on_interval = [idx for idx in first_cluster if idx < length_of_interval]
+    first_cluster_spike_times = np.zeros(length_of_interval)
+    first_cluster_spike_times[first_cluster_on_interval] = 50 
+
     plt.figure()
-    plt.plot(times, gamma[:1000])
-    plt.plot(times, first_cluster[:1000])
+    times = np.arange(0, length_of_interval)
+    plt.plot(times, gamma)
+    plt.plot(times, first_cluster_spike_times)
     plt.legend(['Gamma', 'First Cluster'])
     plt.xlabel('Time (ms)')
     plt.ylabel('Amplitude')
