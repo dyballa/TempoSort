@@ -16,10 +16,25 @@ spike_times = 'data/2017_rat_hippocampus/spike_times'
 spike_clusters ='data/2017_rat_hippocampus/spike_clusters' 
 fs = 30000
 
-def main(sample_data, channel_map, fs):
-    chunked_data = read_directly_to_chunks(sample_data)
-    first_chunk = next(chunked_data)
-    gamma_comparison(first_chunk, fs, spike_times, spike_clusters)
+def main(sample_data, channel_map, fs):    
+    chan_locs = np.load(channel_locations, mmap_mode = "r") 
+    chan_map = np.load(channel_map, mmap_mode = "r")
+    visualize_neuropixel(chan_map, chan_locs, [1,2,3,4,5,6])
+    
+    # chunked_data = read_directly_to_chunks(sample_data)
+    # first_chunk = next(chunked_data)
+    # filtered_chunk = butter_bandpass_every_channel(first_chunk, 300, 6000, fs)
+    # detected_spikes = detect_spikes(filtered_chunk, 15) 
+    #  gc_spikes = np.load(spike_times, mmap_mode = "r")
+    #  gc_spikes =  gc_spikes.flatten()
+    # combined_channel_plot(filtered_chunk, [1,2,3,4,5,6], 0, 5000)
+     
+
+    # gamma = capture_gamma(first_chunk, fs)
+    # plot_fourier(gamma, fs, 0, 1000)
+    #param_sweep_filtering(first_chunk, fs, spike_times)
+
+    #gamma_comparison(first_chunk, fs, spike_times, spike_clusters)
     # print(np.load(spike_times, mmap_mode="r"))
     # print(np.load(spike_clusters, mmap_mode="r"))
     # timeslice_iterator = timeslice_generator(raw_data, 300)
@@ -51,7 +66,7 @@ def visualize_gammawaves(raw_data,fs):
     gamma = capture_gamma(raw_data, fs)
     plot_channel_data(gamma, 0, 0, twenty_gamma_cycles)
 
-
+## Compare detection plot produced by moving average vs. butterworth filter
 def compare_detect_spikes(test_matrix):
     filtered_matrix = butter_bandpass_filter(test_matrix, 300, 6000, fs)
     mv_matrix = capture_action_potential(test_matrix, fs)
@@ -60,7 +75,7 @@ def compare_detect_spikes(test_matrix):
     plot_channel_spikes(test_matrix, butter_spikes, 1, 0, 5000)
     plot_channel_spikes(test_matrix, mv_spikes, 1, 0, 5000)
 
-## Live plotting of spiking data at Channel 
+## Live plotting of spiking data at channel 
 def animate_timeslice(raw_data, timeslice_iterator, channel, fs):
     fig, ax = plt.subplots()
     x_data, y_data = [], []
@@ -100,16 +115,23 @@ def animate_timeslice(raw_data, timeslice_iterator, channel, fs):
     # time to process each 10ms timeslice
     print(timing_array)
 
-def param_sweep_filtering(raw_data, fs, gc_spikes):
-    detection_threshold = np.sqrt(np.mean(np.array(raw_data)** 2))
+## Parameter sweep to identify best window-size and stride-length for moving average filter
+def param_sweep_filtering(raw_data, fs, spike_times):
+    detection_threshold = 2 * calculate_rms(raw_data) # 2RMS threshold
+    spike_times = np.load(spike_times, mmap_mode = "r")
+    spike_times = spike_times.flatten()
     spike_scores = []
-    for window in range(30, 500, 20):
-        for stride in range(1, 15, 1):
-            filtered_data = moving_average_lowpass_filter(raw_data, 300, fs, window_size=window, stride=stride)
+    for window in range(100, 401, 100):
+        for stride in range(1, 6, 1):
+            filtered_data = highpass_every_channel(raw_data, 300, fs, window_size=window, stride=stride)
             spikes = detect_spikes(filtered_data, detection_threshold)
-            score = detection_score(spikes, gc_spikes)
-            spike_scores.append(window, stride, score)
+            score = detection_score(spikes, spike_times)
+            spike_scores.append((window, stride, score))
     plt.figure()
+
+    spike_scores = np.array(spike_scores)
+    print(spike_scores)
+
     window_sizes = spike_scores[:, 0]
     strides = spike_scores[:, 1]
     scores = spike_scores[:, 2]
@@ -123,9 +145,12 @@ def param_sweep_filtering(raw_data, fs, gc_spikes):
     plt.ylabel('Stride')
     plt.title('Accuracy of Spike Detection with Varying Parameters')
 
-    plt.show()
+    plt.show() 
+    print(max(spike_scores, key=lambda x: x[2]))
 
-def gamma_comparison(raw_data, fs, spike_times, spike_clusters, start=0, end=7500):
+## Plots the gamma wave and the detected spikes associated with a particular cluster
+## on the same graph to help identify cyclic neural activity
+def gamma_comparison(raw_data, fs, spike_times, spike_clusters, spike_cluster, start=0, end=7500):
 
     length_of_interval = end - start
 
@@ -136,7 +161,7 @@ def gamma_comparison(raw_data, fs, spike_times, spike_clusters, start=0, end=750
 
     spike_cluster_times = format_output(spike_times, spike_clusters)
     
-    first_cluster = [time for time in spike_cluster_times[1056]]
+    first_cluster = [time for time in spike_cluster_times[spike_cluster]]
     first_cluster_on_interval = [idx for idx in first_cluster if idx < length_of_interval]
     first_cluster_spike_times = np.zeros(length_of_interval)
     first_cluster_spike_times[first_cluster_on_interval] = 50 
@@ -145,12 +170,14 @@ def gamma_comparison(raw_data, fs, spike_times, spike_clusters, start=0, end=750
     times = np.arange(0, length_of_interval)
     plt.plot(times, gamma)
     plt.plot(times, first_cluster_spike_times)
-    plt.legend(['Gamma', 'First Cluster'])
+    plt.legend(['Gamma', 'Spike Cluster'])
     plt.xlabel('Time (ms)')
     plt.ylabel('Amplitude')
     plt.show()
 
-def format_output(path_to_spike_time, path_to_spike_clusters):
+#Function which returns a dictionary in which each entry represents the timse at which a cluster
+#featured a spike
+def get_spikes_by_cluster(path_to_spike_time, path_to_spike_clusters):
     spike_times = np.load(path_to_spike_time, mmap_mode="r")
     spike_clusters = np.load(path_to_spike_clusters, mmap_mode="r")
     spike_times = spike_times.flatten()

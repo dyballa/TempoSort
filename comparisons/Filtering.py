@@ -26,6 +26,16 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
     y = filtfilt(b, a, data)
     return y
 
+## Apply filters to all channels
+
+def butter_lowpass_every_channel(x, lowcut, sampling_rate):
+    return(np.apply_along_axis(butter_lowpass_filter, axis=1, arr=x, lowcut=lowcut, fs=sampling_rate))
+
+def butter_bandpass_every_channel(x, lowcut, highcut, sampling_rate):
+     return(np.apply_along_axis(butter_bandpass_filter, axis=1, arr=x, lowcut=lowcut, highcut=highcut, fs=sampling_rate))
+    
+## Spike interface
+
 def spikeinterface_LFP(sp_recording):
     return(spre.gaussian_filter(recording=sp_recording, freq_min=None, freq_max=300))
 
