@@ -2,6 +2,7 @@ from src.Detection import*
 from src.Filtering import * 
 from src.ReadBinary import *
 from src.Visualize import * 
+from src.Whitening import * 
 from comparisons.Filtering import*
 from comparisons.ReadBinary import* 
 import matplotlib.pyplot as plt
@@ -16,14 +17,33 @@ spike_times = 'data/2017_rat_hippocampus/spike_times'
 spike_clusters ='data/2017_rat_hippocampus/spike_clusters' 
 fs = 30000
 
-def main(sample_data, channel_map, fs):    
+def main(sample_data, channel_map, fs): 
+    #pre-load important data
     chan_locs = np.load(channel_locations, mmap_mode = "r") 
     chan_map = np.load(channel_map, mmap_mode = "r")
-    visualize_neuropixel(chan_map, chan_locs, [1,2,3,4,5,6])
+    chunked_data = read_directly_to_chunks(sample_data)
     
-    # chunked_data = read_directly_to_chunks(sample_data)
-    # first_chunk = next(chunked_data)
-    # filtered_chunk = butter_bandpass_every_channel(first_chunk, 300, 6000, fs)
+    #filtering/whitening of chunks
+    first_chunk = next(chunked_data) # First minute of data
+    filtered_chunk = highpass_every_channel(first_chunk, 300, fs) # 1000 window size
+    whitened_chunk = zca_whitening(filtered_chunk)
+    
+    #ground-control spike times
+    gc_spikes = np.load(spike_times, mmap_mode = "r")
+    gc_spikes = gc_spikes.flatten()
+
+    #generate graph 
+    first_spike = gc_spikes[0]
+    combined_channel_plot(whitened_chunk, np.arange(384), 1800, 1900)
+
+    
+
+
+
+    #visualize_neuropixel(chan_map, chan_locs, [1,2,3,4,5,6])
+    
+  
+   
     # detected_spikes = detect_spikes(filtered_chunk, 15) 
     #  gc_spikes = np.load(spike_times, mmap_mode = "r")
     #  gc_spikes =  gc_spikes.flatten()

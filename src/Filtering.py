@@ -18,7 +18,7 @@ def moving_average_lowpass_filter(x, low_cut, sampling_rate, window_size=None, s
     
     return filtered_signal
 
-
+#highpass filter with default window size of sampling_rate/high_cut
 def moving_average_highpass_filter(x, high_cut, sampling_rate, window_size=None, stride=1):
     if window_size is None:
         filter_length = int(np.ceil(sampling_rate / high_cut))
