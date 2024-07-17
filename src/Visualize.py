@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 import numpy as np
+from tkinter import *
 
 
 #Plot individual channel data
@@ -52,54 +53,98 @@ def filt_comparison_plot(raw_data, mv_lfp, cmp_lfp, channel, begin_interval, end
 
     plt.show()
 
-def combined_channel_plot(dataset, channels, begin_interval, end_interval):
-    fig, ax = plt.subplots(figsize=(10, 6))
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.widgets import Slider
+
+def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_interval, end_interval):
+    import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
+
+def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_interval, end_interval):
+    fig, channel_ax = plt.subplots(figsize=(10, 6))
     plt.subplots_adjust(bottom=0.2, right=0.8)
 
     sample_times = np.arange(begin_interval, end_interval)
     times = sample_times / 30
 
+    # Style subplots
+    channel_ax.set_title('Channel Data')
+    channel_ax.set_xlabel('Time (ms)')
+    channel_ax.set_ylabel('Channel (#)')
+
+    # Position subplot elements
     slider_color = 'White'
-    axis_vertical_window = plt.axes([0.92, 0.25, 0.03, 0.65], facecolor=slider_color)
-    axis_vertical_zoom = plt.axes([0.85, 0.25, 0.03, 0.65], facecolor=slider_color)
-    axis_horizontal_window = plt.axes([0.1, 0.12, 0.65, 0.03], facecolor=slider_color)
-    axis_horizontal_zoom = plt.axes([0.1, 0.08, 0.65, 0.03], facecolor=slider_color)
+    axis_start_channel = plt.axes([0.92, 0.45, 0.03, 0.5], facecolor=slider_color)
+    axis_vertical_window = plt.axes([0.85, 0.45, 0.03, 0.5], facecolor=slider_color)
+    axis_start_time = plt.axes([0.1, 0.10, 0.65, 0.03], facecolor=slider_color)
+    axis_horizontal_window= plt.axes([0.1, 0.06, 0.65, 0.03], facecolor=slider_color)
+    neuropixel_ax = fig.add_axes([0.65, 0.04, 0.55, 0.3])
 
-    slider_vertical_window = Slider(axis_vertical_window, 'Channels', -1, len(channels) - 1, valinit=0, valstep=1, orientation='vertical')
-    slider_vertical_zoom = Slider(axis_vertical_zoom, 'Zoom', 1, len(channels), valinit=5, valstep=1, orientation='vertical')
-    slider_horizontal_window = Slider(axis_horizontal_window, 'Time (ms)', times[0], times[-1], valinit=times[0], orientation='horizontal')
-    slider_horizontal_zoom = Slider(axis_horizontal_zoom, 'Zoom', 0, 100, valinit=(times[-1] - times[0]), orientation='horizontal')
+    # Setup logscale for window sliders
+    vertical_window_min, vertical_window_max = 1, len(channels)
+    log_vertical_window_min, log_vertical_window_max = np.log10(vertical_window_min), np.log10(vertical_window_max)
 
+    # Setup slider ranges
+    slider_start_channel = Slider(axis_start_channel, 'Channel', -1, len(channels) - 1, valinit=0, valstep=1, orientation='vertical')
+    slider_vertical_window = Slider(axis_vertical_window, 'Window', log_vertical_window_min, log_vertical_window_max, valinit=np.log10(5), valstep=(log_vertical_window_max - log_vertical_window_min) / len(channels), orientation='vertical')
+    slider_start_time = Slider(axis_start_time, 'Time', times[0], times[-1], valinit=times[0], orientation='horizontal')
+    slider_horizontal_window = Slider(axis_horizontal_window, 'Window', 0, 2, valinit=0, valstep=(np.log10(times[-1]) - np.log10(times[0])) / 100, orientation='horizontal')
+
+    # Represent the zoom slider values using actual values
+    def format_vertical_window(val):
+        return f'{int(10 ** val)} channels'
+
+    def format_horizontal_window(val):
+        return f'{10 ** val:.2f} ms'
+    
+    slider_vertical_window._format =  format_vertical_window
+    slider_horizontal_window._format = format_horizontal_window
+
+    spacing = 25  # Space between channels
     lines = []
+
+    # Graph channel signals
     for i, channel in enumerate(channels):
-        line, = ax.plot(times, dataset[channel, begin_interval:end_interval] + i * 25)
+        line, = channel_ax.plot(times, dataset[channel, begin_interval:end_interval] + i * spacing)
         lines.append(line)
 
+    
+
+    # Update graph view based on slider positions
     def update(val):
-        start_channel = int(slider_vertical_window.val)
-        num_channels = int(slider_vertical_zoom.val)
+        start_channel = int(slider_start_channel.val)
+        num_channels = int(10 ** slider_vertical_window.val)  # Convert log scale back to linear scale
         end_channel = min(start_channel + num_channels, len(channels))
 
-        ax.set_xlim([slider_horizontal_window.val, slider_horizontal_window.val + slider_horizontal_zoom.val])
-        ax.set_ylim([start_channel * 25, end_channel * 25])
+        horizontal_window = int(10 ** slider_horizontal_window.val)  # Convert log scale back to linear scale
 
-        yticks = range(start_channel * 25, end_channel * 25, 25)
-        ax.set_yticks(yticks)
-        ax.set_yticklabels(range(start_channel, end_channel))
+        channel_ax.set_xlim([slider_start_time.val, slider_start_time.val + horizontal_window])
+        channel_ax.set_ylim([start_channel * spacing, end_channel * spacing])
+
+        yticks = range(start_channel * spacing, end_channel * spacing, spacing)
+        channel_ax.set_yticks(yticks)
+        channel_ax.set_yticklabels(range(start_channel, end_channel))
 
         for i, line in enumerate(lines):
             line.set_visible(start_channel <= i < end_channel)
 
         fig.canvas.draw_idle()
 
+        visualize_neuropixel(neuropixel_ax, chan_map, channel_locs, np.arange(start_channel, end_channel), [0])  # TODO: update to call correct function based on class probe type element
+
+    # Call slider update function on slider change
+    slider_start_channel.on_changed(update)
     slider_vertical_window.on_changed(update)
-    slider_vertical_zoom.on_changed(update)
+    slider_start_time.on_changed(update)
     slider_horizontal_window.on_changed(update)
-    slider_horizontal_zoom.on_changed(update)
+
+
+    
 
     update(None)  # Initial update
     plt.show()
-
 
 # Plot filtered data from a single channel overlaid with a plot of the detected spikes on that channel
 def plot_channel_spikes(data, spikes, channels, begin_interval, end_interval, spike_times=None):
@@ -145,21 +190,34 @@ def plot_fourier(data, fs, start, end):
 
 #Plot the location of each of the channels in the neuropixel probe
 #The parameter channels identifies which channels should be plotted in red
-def visualize_neuropixel(chan_map, chan_locs, channels):
-    plt.figure(figsize=(10, 10))
-    for idx, (loc, value) in enumerate(zip(chan_locs, chan_map)):
+def visualize_neuropixel(ax, chan_map, chan_locs, window_channels, selected_channels):
+    ax.clear()
+    points = zip(chan_locs, chan_map)
+    for idx, (loc, value) in enumerate(points):
         x, y = loc
         color = 'black'
-        if value in channels: 
+        size = 1
+        mark = 'o'
+        if value in selected_channels: 
             color = 'red'
-            plt.text(x + 1, y, str(value), color=color, ha='left', va='center', zorder=3, fontsize=10)
-            plt.plot([x, x + 1], [y, y], color=color, linewidth=0.5, zorder=1)
-        plt.scatter(x, y, color=color, s=15, edgecolor='black', zorder=2)
-        
+            ax.text(x + 1, y, str(value), color=color, ha='left', va='center', zorder=2, fontsize=4)
+            ax.plot([x, x + 1], [y, y], color=color, linewidth=0.5, zorder=1)
+            size = 15
+            mark  = 'x'
+        elif value in window_channels: 
+            color = 'green'
+            ax.text(x + 1, y, str(value), color=color, ha='left', va='center', zorder=2, fontsize=4)
+            ax.plot([x, x + 1], [y, y], color=color, linewidth=0.5, zorder=1)
+            size = 15
+            mark = '^'
+        ax.scatter(x, y, marker=mark, color=color, s=size, edgecolor='black', zorder=4)
     
+    ax.set_aspect(.05)
+    ax.set_xlim(0, 65)
+    ax.set_ylim(0, 4000)
 
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.title('Neuropixel Channel Map')
-    plt.grid(True)
-    plt.show()
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_title('Neuropixel Channel Map', fontsize=8)
+    ax.grid(True)
+

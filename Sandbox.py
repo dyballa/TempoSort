@@ -34,7 +34,7 @@ def main(sample_data, channel_map, fs):
 
     #generate graph 
     first_spike = gc_spikes[0]
-    combined_channel_plot(whitened_chunk, np.arange(384), 1800, 1900)
+    combined_channel_plot(whitened_chunk, chan_map, chan_locs, np.arange(384), 1800, 1900)
 
     
 
