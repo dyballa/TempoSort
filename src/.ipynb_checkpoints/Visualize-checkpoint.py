@@ -41,19 +41,28 @@ def filt_comparison_plot(raw_data, mv_lfp, cmp_lfp, channel, begin_interval, end
     fig, axs = plt.subplots(3, 1, figsize=(8, 6))
     # Subplot 1
     axs[0].plot(times, raw_data)
-
+    axs[0].set_title('Raw Data')
 
     # Subplot 2
     axs[1].plot(times, mv_lfp)
-
+    axs[1].set_title('Moving Average')
 
     # Subplot 3
     axs[2].plot(times, cmp_lfp)
-
+    axs[2].set_title('Comparison')
 
     plt.show()
 
-def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_interval, end_interval, channel_spikes=None):
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.widgets import Slider
+
+def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_interval, end_interval):
+    import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
+
+def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_interval, end_interval):
     fig, channel_ax = plt.subplots(figsize=(10, 6))
     plt.subplots_adjust(bottom=0.2, right=0.8)
 
@@ -101,11 +110,7 @@ def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_inter
         line, = channel_ax.plot(times, dataset[channel, begin_interval:end_interval] + i * spacing)
         lines.append(line)
 
-    if channel_spikes:
-        for channel, spike_time in channel_spikes:
-            adjusted_time = int(spike_time - begin_interval)  
-            if begin_interval <= spike_time < end_interval:
-                channel_ax.plot(times[adjusted_time], dataset[channel, spike_time] + channel * spacing, 'ro')
+    
 
     # Update graph view based on slider positions
     def update(val):
@@ -134,6 +139,9 @@ def combined_channel_plot(dataset, chan_map, channel_locs, channels, begin_inter
     slider_vertical_window.on_changed(update)
     slider_start_time.on_changed(update)
     slider_horizontal_window.on_changed(update)
+
+
+    
 
     update(None)  # Initial update
     plt.show()

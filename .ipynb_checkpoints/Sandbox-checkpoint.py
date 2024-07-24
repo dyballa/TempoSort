@@ -1,6 +1,5 @@
 from src.Detection import*
 from src.Filtering import * 
-from src.Groundtruth import * 
 from src.ReadBinary import *
 from src.Visualize import * 
 from src.Whitening import * 
@@ -19,25 +18,33 @@ spike_clusters ='data/2017_rat_hippocampus/spike_clusters'
 fs = 30000
 
 def main(sample_data, channel_map, fs): 
-    #pre-load important data
+    # #pre-load important data
+    # chan_locs = np.load(channel_locations, mmap_mode = "r") 
+    # chan_map = np.load(channel_map, mmap_mode = "r")
+    # chunked_data = read_directly_to_chunks(sample_data)
+    
+    # #filtering/whitening of chunks
+    # first_chunk = next(chunked_data) # First minute of data
+    # filtered_chunk = highpass_every_channel(first_chunk, 300, fs) # 1000 window size
+    # whitened_chunk = zca_whitening(filtered_chunk)
+    
+    # #ground-control spike times
+    # gc_spikes = np.load(spike_times, mmap_mode = "r")
+    # gc_spikes = gc_spikes.flatten()
+
+    # #generate graph 
+    # first_spike = gc_spikes[0]
+    # combined_channel_plot(whitened_chunk, chan_map, chan_locs, np.arange(384), 1800, 1900)
+
+
     chan_locs = np.load(channel_locations, mmap_mode = "r") 
     chan_map = np.load(channel_map, mmap_mode = "r")
     chunked_data = read_directly_to_chunks(sample_data)
     
     #filtering/whitening of chunks
-    first_chunk = next(chunked_data) # First minute of data
-    filtered_chunk = highpass_every_channel(first_chunk, 300, fs) # 1000 window size
-    whitened_chunk = zca_whitening(filtered_chunk)
+    first_chunk = next(chunked_data)
+    compare_avg_butter_LFP(first_chunk, fs)
     
-    #ground-control spike times
-    gc_spikes = np.load(spike_times, mmap_mode = "r")
-    gc_spikes = gc_spikes.flatten()
-
-    #generate graph 
-    channel_spikes = get_channel_spikes(whitened_chunk, gc_spikes)
-    combined_channel_plot(whitened_chunk, chan_map, chan_locs, np.arange(384), 1800, 1900, channel_spikes)
-
-
 
 
 
