@@ -34,8 +34,8 @@ def main(sample_data, channel_map, fs):
     gc_spikes = gc_spikes.flatten()
 
     #generate graph 
-    channel_spikes = get_channel_spikes(whitened_chunk, gc_spikes)
-    combined_channel_plot(whitened_chunk, chan_map, chan_locs, np.arange(384), 1800, 1900, channel_spikes)
+    #channel_spikes = get_channel_spikes(whitened_chunk, gc_spikes)
+    combined_channel_plot(whitened_chunk, chan_map, chan_locs, np.arange(384), 1800, 1900, None)
 
 
 

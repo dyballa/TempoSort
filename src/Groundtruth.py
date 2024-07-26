@@ -7,7 +7,7 @@ def get_channel_spikes_gt(data, spike_times):
         # Find the channel with the maximum value at the given time
         if(time > len(data[0])):
             break
-        while(time = spike_channels[-1][1]):
+        while(time == spike_channels[-1][1]):
             time -= 1 
         loc = np.argmax(data[:, time])
         spike_channels.append((loc, time))
