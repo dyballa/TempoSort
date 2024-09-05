@@ -2,7 +2,7 @@
     "class": "spikeforest.load_extractors.MdaRecordingExtractorV2.MdaRecordingExtractorV2.MdaRecordingExtractorV2",
     "module": "spikeforest",
     "kwargs": {
-        "raw_path": "/home/mcg76/.kachery-cloud/sha1/42/91/9f/42919f9e7bff443950830537ae2a5d44e8a9f05f",
+        "raw_path": "../../../../.kachery-cloud/sha1/42/91/9f/42919f9e7bff443950830537ae2a5d44e8a9f05f",
         "params": {
             "samplerate": 30000,
             "scale_factor": 0.195,
@@ -140,6 +140,7 @@
         ]
     },
     "version": "0.12.7",
+    "relative_paths": true,
     "annotations": {
         "is_filtered": false,
         "probes_info": [
@@ -313,6 +314,5 @@
         ],
         "gain_to_uV": null,
         "offset_to_uV": null
-    },
-    "relative_paths": false
+    }
 }
