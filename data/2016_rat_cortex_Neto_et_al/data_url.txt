@@ -1,1 +1,8 @@
+Download the data following instructions in:
 https://crcns.org/data-sets/methods/spe-2/about-spe-2
+(you will need to create an account with CRCNS.org first)
+
+Code:
+https://github.com/georgedimitriadis/themeaningofbrain/blob/master/ExperimentSpecificCode/_2015_Paired_Recordings_JN/Joana_Neto/
+(look at files paired_32ch.py and paired_128ch.py
+
