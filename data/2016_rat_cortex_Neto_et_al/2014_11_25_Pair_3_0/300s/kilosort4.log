@@ -1,0 +1,309 @@
+2025-05-13 10:12:17,454 kilosort.run_kilosort INFO     Kilosort version 4.0.25
+2025-05-13 10:12:17,456 kilosort.run_kilosort INFO     Python version 3.9.21
+2025-05-13 10:12:17,457 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:12:17,457 kilosort.run_kilosort INFO     System information:
+2025-05-13 10:12:17,457 kilosort.run_kilosort INFO     Linux-4.18.0-477.74.1.el8_8.x86_64-x86_64-with-glibc2.28 x86_64
+2025-05-13 10:12:17,458 kilosort.run_kilosort INFO     x86_64
+2025-05-13 10:12:17,458 kilosort.run_kilosort INFO     Using CPU for PyTorch computations. Specify `device` to change this.
+2025-05-13 10:12:17,459 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:12:17,459 kilosort.run_kilosort INFO     Sorting /home/lss72/palmer_scratch/spike_sort/2014_11_25_Pair_3_0
+2025-05-13 10:12:17,460 kilosort.run_kilosort DEBUG    Initial ops:
+
+ops = {
+    'n_chan_bin': 32,
+    'fs': 30000,
+    'batch_size': 60000,
+    'nblocks': 1,
+    'Th_universal': 9,
+    'Th_learned': 8,
+    'tmin': 0,
+    'tmax': 300,
+    'nt': 61,
+    'shift': None,
+    'scale': None,
+    'artifact_threshold': inf,
+    'nskip': 25,
+    'whitening_range': 32,
+    'highpass_cutoff': 300,
+    'binning_depth': 5,
+    'sig_interp': 20,
+    'drift_smoothing': [0.5, 0.5, 0.5],
+    'nt0min': 20,
+    'dmin': None,
+    'dminx': 32,
+    'min_template_size': 10,
+    'template_sizes': 5,
+    'nearest_chans': 10,
+    'nearest_templates': 100,
+    'max_channel_distance': 32,
+    'max_peels': 100,
+    'templates_from_data': True,
+    'n_templates': 6,
+    'n_pcs': 6,
+    'Th_single_ch': 6,
+    'acg_threshold': 0.2,
+    'ccg_threshold': 0.25,
+    'cluster_downsampling': 20,
+    'x_centers': None,
+    'duplicate_spike_ms': 0.25,
+    'position_limit': 100,
+    'data_dir': PosixPath('/home/lss72/palmer_scratch/spike_sort'),
+    'filename': PosixPath('/home/lss72/palmer_scratch/spike_sort/2014_11_25_Pair_3_0'),
+    'data_dtype': dtype('uint16'),
+    'do_CAR': True,
+    'invert_sign': False,
+    'NTbuff': 60122,
+    'Nchan': 32,
+    'duplicate_spike_bins': 7,
+    'torch_device': 'cpu',
+    'save_preprocessed_copy': False
+}
+
+2025-05-13 10:12:17,462 kilosort.run_kilosort DEBUG    Probe dictionary:
+
+probe = {
+    'chanMap': np.array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+       17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]),
+    'xc': np.array([25.5, 25.5, 43.5, 43.5, 43.5, 43.5, 43.5, 43.5, 25.5, 25.5, 43.5,
+       43.5, 43.5, 43.5, 25.5, 25.5, 25.5, 25.5,  7.5,  7.5,  7.5,  7.5,
+       25.5, 25.5,  7.5,  7.5,  7.5,  7.5,  7.5,  7.5, 25.5, 25.5],
+      dtype=np.float32),
+    'yc': np.array([282.5, 232.5,  20. ,  45. ,  95. , 145. , 195. , 245. ,  82.5,
+        32.5, 220. , 170. , 120. ,  70. , 132.5, 182.5, 157.5, 107.5,
+        70. , 120. , 170. , 220. ,   7.5,  57.5, 245. , 195. , 145. ,
+        95. ,  45. ,  20. , 207.5, 257.5], dtype=np.float32),
+    'kcoords': np.array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]),
+    'n_chan': 32
+}
+
+2025-05-13 10:12:17,462 kilosort.run_kilosort INFO      
+2025-05-13 10:12:17,462 kilosort.run_kilosort INFO     Computing preprocessing variables.
+2025-05-13 10:12:17,462 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:12:17,464 kilosort.run_kilosort INFO     N samples: 9000000
+2025-05-13 10:12:17,464 kilosort.run_kilosort INFO     N seconds: 300.0
+2025-05-13 10:12:17,465 kilosort.run_kilosort INFO     N batches: 150
+2025-05-13 10:12:17,631 kilosort.run_kilosort INFO     Preprocessing filters computed in  0.17s; total  0.17s
+2025-05-13 10:12:17,633 kilosort.run_kilosort DEBUG    hp_filter shape: torch.Size([30122])
+2025-05-13 10:12:17,633 kilosort.run_kilosort DEBUG    whiten_mat shape: torch.Size([32, 32])
+2025-05-13 10:12:17,633 kilosort.run_kilosort INFO      
+2025-05-13 10:12:17,635 kilosort.run_kilosort INFO     Resource usage after preprocessing
+2025-05-13 10:12:17,636 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:12:17,636 kilosort.run_kilosort INFO     CPU usage:    12.00 %
+2025-05-13 10:12:17,637 kilosort.run_kilosort INFO     Memory:        5.25 %     |     39.64   /   754.60 GB
+2025-05-13 10:12:17,637 kilosort.run_kilosort INFO     ------------------------------------------------------
+2025-05-13 10:12:17,638 kilosort.run_kilosort INFO     GPU usage:    N/A
+2025-05-13 10:12:17,638 kilosort.run_kilosort INFO     GPU memory:   N/A
+2025-05-13 10:12:17,638 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:12:17,640 kilosort.run_kilosort INFO      
+2025-05-13 10:12:17,640 kilosort.run_kilosort INFO     Computing drift correction.
+2025-05-13 10:12:17,640 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:12:17,641 kilosort.spikedetect INFO     Re-computing universal templates from data.
+2025-05-13 10:12:21,108 kilosort.spikedetect INFO     Number of universal templates: 135
+2025-05-13 10:12:21,111 kilosort.spikedetect INFO     Detecting spikes...
+2025-05-13 10:12:21,112 kilosort.spikedetect DEBUG     
+2025-05-13 10:12:21,112 kilosort.spikedetect DEBUG    Batch 0
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    CPU usage:    23.10 %
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    Memory:        5.25 %     |     39.65   /   754.60 GB
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2025-05-13 10:12:21,113 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:14:10,639 kilosort.spikedetect DEBUG     
+2025-05-13 10:14:10,639 kilosort.spikedetect DEBUG    Batch 149
+2025-05-13 10:14:10,639 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:14:10,640 kilosort.spikedetect DEBUG    CPU usage:    39.60 %
+2025-05-13 10:14:10,640 kilosort.spikedetect DEBUG    Memory:        6.80 %     |     51.34   /   754.60 GB
+2025-05-13 10:14:10,640 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-05-13 10:14:10,640 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2025-05-13 10:14:10,640 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2025-05-13 10:14:10,640 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:14:10,723 kilosort.run_kilosort INFO     drift computed in  113.08s; total  113.26s
+2025-05-13 10:14:10,723 kilosort.run_kilosort DEBUG    st shape: (33852, 6)
+2025-05-13 10:14:10,723 kilosort.run_kilosort DEBUG    yblk shape: (1,)
+2025-05-13 10:14:10,724 kilosort.run_kilosort DEBUG    dshift shape: (150, 1)
+2025-05-13 10:14:10,724 kilosort.run_kilosort DEBUG    iKxx shape: torch.Size([32, 32])
+2025-05-13 10:14:10,724 kilosort.run_kilosort INFO      
+2025-05-13 10:14:10,727 kilosort.run_kilosort INFO     Resource usage after drift correction
+2025-05-13 10:14:10,728 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:14:10,728 kilosort.run_kilosort INFO     CPU usage:    34.40 %
+2025-05-13 10:14:10,729 kilosort.run_kilosort INFO     Memory:        6.80 %     |     51.34   /   754.60 GB
+2025-05-13 10:14:10,729 kilosort.run_kilosort INFO     ------------------------------------------------------
+2025-05-13 10:14:10,729 kilosort.run_kilosort INFO     GPU usage:    N/A
+2025-05-13 10:14:10,730 kilosort.run_kilosort INFO     GPU memory:   N/A
+2025-05-13 10:14:10,730 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:14:10,757 kilosort.run_kilosort DEBUG    First batch min, max: (-16.676615, 9.856605)
+2025-05-13 10:14:10,757 kilosort.run_kilosort INFO      
+2025-05-13 10:14:10,761 kilosort.run_kilosort INFO     Extracting spikes using templates
+2025-05-13 10:14:10,761 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:14:10,762 kilosort.spikedetect INFO     Re-computing universal templates from data.
+2025-05-13 10:14:14,230 kilosort.spikedetect INFO     Number of universal templates: 135
+2025-05-13 10:14:14,232 kilosort.spikedetect INFO     Detecting spikes...
+2025-05-13 10:14:14,233 kilosort.spikedetect DEBUG     
+2025-05-13 10:14:14,233 kilosort.spikedetect DEBUG    Batch 0
+2025-05-13 10:14:14,233 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:14:14,233 kilosort.spikedetect DEBUG    CPU usage:    26.00 %
+2025-05-13 10:14:14,233 kilosort.spikedetect DEBUG    Memory:        6.12 %     |     46.19   /   754.60 GB
+2025-05-13 10:14:14,233 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-05-13 10:14:14,234 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2025-05-13 10:14:14,234 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2025-05-13 10:14:14,234 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG     
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    Batch 149
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    CPU usage:    49.60 %
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    Memory:        8.70 %     |     65.65   /   754.60 GB
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2025-05-13 10:16:05,455 kilosort.spikedetect DEBUG    ********************************************************
+2025-05-13 10:16:05,456 kilosort.run_kilosort INFO     33795 spikes extracted in  114.70s; total  228.00s
+2025-05-13 10:16:05,456 kilosort.run_kilosort DEBUG    st0 shape: (33795, 6)
+2025-05-13 10:16:05,456 kilosort.run_kilosort DEBUG    tF shape: torch.Size([33795, 10, 6])
+2025-05-13 10:16:05,456 kilosort.run_kilosort INFO      
+2025-05-13 10:16:05,457 kilosort.run_kilosort INFO     First clustering
+2025-05-13 10:16:05,457 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:16:05,463 kilosort.clustering_qr DEBUG     
+2025-05-13 10:16:05,463 kilosort.clustering_qr DEBUG    Cluster center: 0 of 12
+2025-05-13 10:16:05,463 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:05,464 kilosort.clustering_qr DEBUG    CPU usage:    29.00 %
+2025-05-13 10:16:05,464 kilosort.clustering_qr DEBUG    Memory:        8.70 %     |     65.65   /   754.60 GB
+2025-05-13 10:16:05,464 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-05-13 10:16:05,464 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2025-05-13 10:16:05,464 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2025-05-13 10:16:05,464 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:05,466 kilosort.clustering_qr DEBUG    Center 0 | nsp: 5694 | ntemp: 12
+2025-05-13 10:16:07,139 kilosort.clustering_qr DEBUG    Center 1 | nsp: 2576 | ntemp: 12
+2025-05-13 10:16:07,926 kilosort.clustering_qr DEBUG    Center 2 | nsp: 2195 | ntemp: 12
+2025-05-13 10:16:08,788 kilosort.clustering_qr DEBUG    Center 3 | nsp: 3212 | ntemp: 12
+2025-05-13 10:16:09,864 kilosort.clustering_qr DEBUG    Center 4 | nsp: 524 | ntemp: 12
+2025-05-13 10:16:09,866 kilosort.clustering_qr DEBUG    Center 5 | nsp: 4205 | ntemp: 12
+2025-05-13 10:16:11,145 kilosort.clustering_qr DEBUG    Center 6 | nsp: 2653 | ntemp: 12
+2025-05-13 10:16:12,080 kilosort.clustering_qr DEBUG    Center 7 | nsp: 462 | ntemp: 12
+2025-05-13 10:16:12,082 kilosort.clustering_qr DEBUG    Center 8 | nsp: 1750 | ntemp: 12
+2025-05-13 10:16:12,764 kilosort.clustering_qr DEBUG    Center 9 | nsp: 3531 | ntemp: 12
+2025-05-13 10:16:13,780 kilosort.clustering_qr DEBUG     
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    Cluster center: 10 of 12
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    CPU usage:    41.60 %
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    Memory:        8.70 %     |     65.65   /   754.60 GB
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2025-05-13 10:16:13,781 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:13,783 kilosort.clustering_qr DEBUG    Center 10 | nsp: 5315 | ntemp: 12
+2025-05-13 10:16:15,441 kilosort.clustering_qr DEBUG    Center 11 | nsp: 1678 | ntemp: 3
+2025-05-13 10:16:16,018 kilosort.run_kilosort INFO     41 clusters found, in  10.56s; total  238.56s
+2025-05-13 10:16:16,018 kilosort.run_kilosort DEBUG    clu shape: (33795,)
+2025-05-13 10:16:16,018 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([41, 32, 6])
+2025-05-13 10:16:16,018 kilosort.run_kilosort INFO      
+2025-05-13 10:16:16,019 kilosort.run_kilosort INFO     Extracting spikes using cluster waveforms
+2025-05-13 10:16:16,019 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:16:16,032 kilosort.template_matching DEBUG     
+2025-05-13 10:16:16,032 kilosort.template_matching DEBUG    Batch 0
+2025-05-13 10:16:16,032 kilosort.template_matching DEBUG    ********************************************************
+2025-05-13 10:16:16,032 kilosort.template_matching DEBUG    CPU usage:    41.60 %
+2025-05-13 10:16:16,033 kilosort.template_matching DEBUG    Memory:        8.73 %     |     65.87   /   754.60 GB
+2025-05-13 10:16:16,033 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-05-13 10:16:16,033 kilosort.template_matching DEBUG    GPU usage:    N/A
+2025-05-13 10:16:16,033 kilosort.template_matching DEBUG    GPU memory:   N/A
+2025-05-13 10:16:16,033 kilosort.template_matching DEBUG    ********************************************************
+2025-05-13 10:16:27,273 kilosort.template_matching DEBUG     
+2025-05-13 10:16:27,273 kilosort.template_matching DEBUG    Batch 100
+2025-05-13 10:16:27,273 kilosort.template_matching DEBUG    ********************************************************
+2025-05-13 10:16:27,274 kilosort.template_matching DEBUG    CPU usage:    41.70 %
+2025-05-13 10:16:27,274 kilosort.template_matching DEBUG    Memory:        8.36 %     |     63.12   /   754.60 GB
+2025-05-13 10:16:27,274 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-05-13 10:16:27,274 kilosort.template_matching DEBUG    GPU usage:    N/A
+2025-05-13 10:16:27,274 kilosort.template_matching DEBUG    GPU memory:   N/A
+2025-05-13 10:16:27,274 kilosort.template_matching DEBUG    ********************************************************
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG     
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    Batch 149
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    ********************************************************
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    CPU usage:    64.10 %
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    Memory:        9.58 %     |     72.27   /   754.60 GB
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    GPU usage:    N/A
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    GPU memory:   N/A
+2025-05-13 10:16:33,128 kilosort.template_matching DEBUG    ********************************************************
+2025-05-13 10:16:33,134 kilosort.run_kilosort INFO     81573 spikes extracted in  17.12s; total  255.67s
+2025-05-13 10:16:33,135 kilosort.run_kilosort DEBUG    st shape: (81573, 3)
+2025-05-13 10:16:33,135 kilosort.run_kilosort DEBUG    tF shape: torch.Size([81573, 10, 6])
+2025-05-13 10:16:33,135 kilosort.run_kilosort DEBUG    iCC shape: torch.Size([10, 32])
+2025-05-13 10:16:33,135 kilosort.run_kilosort DEBUG    iU shape: torch.Size([32])
+2025-05-13 10:16:33,135 kilosort.run_kilosort INFO      
+2025-05-13 10:16:33,136 kilosort.run_kilosort INFO     Resource usage after spike detection
+2025-05-13 10:16:33,137 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:16:33,138 kilosort.run_kilosort INFO     CPU usage:    45.90 %
+2025-05-13 10:16:33,138 kilosort.run_kilosort INFO     Memory:        9.55 %     |     72.04   /   754.60 GB
+2025-05-13 10:16:33,139 kilosort.run_kilosort INFO     ------------------------------------------------------
+2025-05-13 10:16:33,139 kilosort.run_kilosort INFO     GPU usage:    N/A
+2025-05-13 10:16:33,141 kilosort.run_kilosort INFO     GPU memory:   N/A
+2025-05-13 10:16:33,141 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:16:33,143 kilosort.run_kilosort INFO      
+2025-05-13 10:16:33,143 kilosort.run_kilosort INFO     Final clustering
+2025-05-13 10:16:33,143 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG     
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    Cluster center: 0 of 12
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    CPU usage:    34.50 %
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    Memory:        9.55 %     |     72.04   /   754.60 GB
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2025-05-13 10:16:33,154 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:33,158 kilosort.clustering_qr DEBUG    Center 0 | nsp: 19189 | ntemp: 5
+2025-05-13 10:16:38,170 kilosort.clustering_qr DEBUG    Center 1 | nsp: 2365 | ntemp: 1
+2025-05-13 10:16:38,994 kilosort.clustering_qr DEBUG    Center 2 | nsp: 12451 | ntemp: 7
+2025-05-13 10:16:42,307 kilosort.clustering_qr DEBUG    Center 3 | nsp: 943 | ntemp: 1
+2025-05-13 10:16:42,309 kilosort.clustering_qr DEBUG    Center 4 | nsp: 1033 | ntemp: 1
+2025-05-13 10:16:42,812 kilosort.clustering_qr DEBUG    Center 5 | nsp: 4871 | ntemp: 2
+2025-05-13 10:16:44,282 kilosort.clustering_qr DEBUG    Center 6 | nsp: 12339 | ntemp: 5
+2025-05-13 10:16:47,650 kilosort.clustering_qr DEBUG    Center 7 | nsp: 0 | ntemp: 0
+2025-05-13 10:16:47,652 kilosort.clustering_qr DEBUG    Center 8 | nsp: 9895 | ntemp: 3
+2025-05-13 10:16:50,335 kilosort.clustering_qr DEBUG    Center 9 | nsp: 7497 | ntemp: 3
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG     
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    Cluster center: 10 of 12
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    CPU usage:    41.90 %
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    Memory:        9.57 %     |     72.20   /   754.60 GB
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    ********************************************************
+2025-05-13 10:16:52,543 kilosort.clustering_qr DEBUG    Center 10 | nsp: 0 | ntemp: 0
+2025-05-13 10:16:52,546 kilosort.clustering_qr DEBUG    Center 11 | nsp: 10990 | ntemp: 4
+2025-05-13 10:16:55,487 kilosort.run_kilosort INFO     37 clusters found, in  22.34s; total  278.03s
+2025-05-13 10:16:55,489 kilosort.run_kilosort DEBUG    clu shape: (81573,)
+2025-05-13 10:16:55,489 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([37, 32, 6])
+2025-05-13 10:16:55,489 kilosort.run_kilosort INFO      
+2025-05-13 10:16:55,490 kilosort.run_kilosort INFO     Merging clusters
+2025-05-13 10:16:55,491 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:16:55,603 kilosort.run_kilosort INFO     37 units found, in  0.11s; total  278.14s
+2025-05-13 10:16:55,605 kilosort.run_kilosort DEBUG    clu shape: (81573,)
+2025-05-13 10:16:55,605 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([37, 32, 6])
+2025-05-13 10:16:55,605 kilosort.run_kilosort INFO      
+2025-05-13 10:16:55,606 kilosort.run_kilosort INFO     Resource usage after clustering
+2025-05-13 10:16:55,607 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:16:55,608 kilosort.run_kilosort INFO     CPU usage:    41.50 %
+2025-05-13 10:16:55,608 kilosort.run_kilosort INFO     Memory:        9.57 %     |     72.20   /   754.60 GB
+2025-05-13 10:16:55,609 kilosort.run_kilosort INFO     ------------------------------------------------------
+2025-05-13 10:16:55,609 kilosort.run_kilosort INFO     GPU usage:    N/A
+2025-05-13 10:16:55,609 kilosort.run_kilosort INFO     GPU memory:   N/A
+2025-05-13 10:16:55,610 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:16:55,610 kilosort.run_kilosort INFO      
+2025-05-13 10:16:55,611 kilosort.run_kilosort INFO     Saving to phy and computing refractory periods
+2025-05-13 10:16:55,611 kilosort.run_kilosort INFO     ----------------------------------------
+2025-05-13 10:16:56,000 kilosort.run_kilosort INFO     10 units found with good refractory periods
+2025-05-13 10:16:56,001 kilosort.run_kilosort INFO     Total runtime: 278.54s = 00:04:39 h:m:s
+2025-05-13 10:16:56,010 kilosort.run_kilosort INFO     Sorting output saved in: /home/lss72/palmer_scratch/spike_sort/kilosort4.
+2025-05-13 10:16:56,011 kilosort.run_kilosort INFO      
+2025-05-13 10:16:56,011 kilosort.run_kilosort INFO     Resource usage after saving
+2025-05-13 10:16:56,011 kilosort.run_kilosort INFO     ********************************************************
+2025-05-13 10:16:56,012 kilosort.run_kilosort INFO     CPU usage:    20.30 %
+2025-05-13 10:16:56,012 kilosort.run_kilosort INFO     Memory:        9.57 %     |     72.20   /   754.60 GB
+2025-05-13 10:16:56,013 kilosort.run_kilosort INFO     ------------------------------------------------------
+2025-05-13 10:16:56,013 kilosort.run_kilosort INFO     GPU usage:    N/A
+2025-05-13 10:16:56,013 kilosort.run_kilosort INFO     GPU memory:   N/A
+2025-05-13 10:16:56,014 kilosort.run_kilosort INFO     ********************************************************
