@@ -1,0 +1,162 @@
+2025-06-16 20:43:11,583 kilosort.spikedetect INFO     Re-computing universal templates from data.
+2025-06-16 20:43:12,116 kilosort.spikedetect INFO     Number of universal templates: 135
+2025-06-16 20:43:12,119 kilosort.spikedetect INFO     Detecting spikes...
+2025-06-16 20:43:12,121 kilosort.spikedetect DEBUG     
+2025-06-16 20:43:12,121 kilosort.spikedetect DEBUG    Batch 0
+2025-06-16 20:43:12,121 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:12,121 kilosort.spikedetect DEBUG    CPU usage:    35.10 %
+2025-06-16 20:43:12,121 kilosort.spikedetect DEBUG    Memory:       21.97 %     |    165.77   /   754.60 GB
+2025-06-16 20:43:12,121 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-06-16 20:43:12,122 kilosort.spikedetect DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:12,122 kilosort.spikedetect DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:12,122 kilosort.spikedetect DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:12,122 kilosort.spikedetect DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:12,122 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:24,629 kilosort.spikedetect DEBUG     
+2025-06-16 20:43:24,629 kilosort.spikedetect DEBUG    Batch 278
+2025-06-16 20:43:24,629 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:24,630 kilosort.spikedetect DEBUG    CPU usage:    25.90 %
+2025-06-16 20:43:24,630 kilosort.spikedetect DEBUG    Memory:       22.54 %     |    170.11   /   754.60 GB
+2025-06-16 20:43:24,630 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-06-16 20:43:24,630 kilosort.spikedetect DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:24,630 kilosort.spikedetect DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:24,630 kilosort.spikedetect DEBUG    Allocated:     0.04 %     |      0.02   /    39.49 GB
+2025-06-16 20:43:24,631 kilosort.spikedetect DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:24,631 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:24,804 kilosort.spikedetect INFO     Re-computing universal templates from data.
+2025-06-16 20:43:25,337 kilosort.spikedetect INFO     Number of universal templates: 135
+2025-06-16 20:43:25,343 kilosort.spikedetect INFO     Detecting spikes...
+2025-06-16 20:43:25,344 kilosort.spikedetect DEBUG     
+2025-06-16 20:43:25,344 kilosort.spikedetect DEBUG    Batch 0
+2025-06-16 20:43:25,344 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    CPU usage:    35.10 %
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    Memory:       22.54 %     |    170.11   /   754.60 GB
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:25,345 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:37,807 kilosort.spikedetect DEBUG     
+2025-06-16 20:43:37,807 kilosort.spikedetect DEBUG    Batch 278
+2025-06-16 20:43:37,807 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:37,808 kilosort.spikedetect DEBUG    CPU usage:    26.00 %
+2025-06-16 20:43:37,808 kilosort.spikedetect DEBUG    Memory:       23.89 %     |    180.24   /   754.60 GB
+2025-06-16 20:43:37,808 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2025-06-16 20:43:37,808 kilosort.spikedetect DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:37,808 kilosort.spikedetect DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:37,809 kilosort.spikedetect DEBUG    Allocated:     0.04 %     |      0.02   /    39.49 GB
+2025-06-16 20:43:37,809 kilosort.spikedetect DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:37,809 kilosort.spikedetect DEBUG    ********************************************************
+2025-06-16 20:43:37,826 kilosort.clustering_qr DEBUG     
+2025-06-16 20:43:37,826 kilosort.clustering_qr DEBUG    Cluster center: 0 of 12
+2025-06-16 20:43:37,826 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:37,826 kilosort.clustering_qr DEBUG    CPU usage:    26.90 %
+2025-06-16 20:43:37,826 kilosort.clustering_qr DEBUG    Memory:       23.89 %     |    180.27   /   754.60 GB
+2025-06-16 20:43:37,826 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-06-16 20:43:37,827 kilosort.clustering_qr DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:37,827 kilosort.clustering_qr DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:37,827 kilosort.clustering_qr DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:37,827 kilosort.clustering_qr DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:37,827 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:37,836 kilosort.clustering_qr DEBUG    Center 0 | nsp: 10318 | ntemp: 12
+2025-06-16 20:43:38,545 kilosort.clustering_qr DEBUG    Center 1 | nsp: 4887 | ntemp: 12
+2025-06-16 20:43:38,939 kilosort.clustering_qr DEBUG    Center 2 | nsp: 3670 | ntemp: 12
+2025-06-16 20:43:39,349 kilosort.clustering_qr DEBUG    Center 3 | nsp: 5817 | ntemp: 12
+2025-06-16 20:43:39,866 kilosort.clustering_qr DEBUG    Center 4 | nsp: 1509 | ntemp: 12
+2025-06-16 20:43:40,224 kilosort.clustering_qr DEBUG    Center 5 | nsp: 7532 | ntemp: 12
+2025-06-16 20:43:40,607 kilosort.clustering_qr DEBUG    Center 6 | nsp: 4480 | ntemp: 12
+2025-06-16 20:43:41,086 kilosort.clustering_qr DEBUG    Center 7 | nsp: 865 | ntemp: 12
+2025-06-16 20:43:41,108 kilosort.clustering_qr DEBUG    Center 8 | nsp: 3477 | ntemp: 12
+2025-06-16 20:43:41,485 kilosort.clustering_qr DEBUG    Center 9 | nsp: 9534 | ntemp: 12
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG     
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    Cluster center: 10 of 12
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    CPU usage:    25.80 %
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    Memory:       20.26 %     |    152.91   /   754.60 GB
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:41,995 kilosort.clustering_qr DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:41,996 kilosort.clustering_qr DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:41,996 kilosort.clustering_qr DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:41,996 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:42,212 kilosort.clustering_qr DEBUG    Center 10 | nsp: 8872 | ntemp: 12
+2025-06-16 20:43:42,716 kilosort.clustering_qr DEBUG    Center 11 | nsp: 3162 | ntemp: 3
+2025-06-16 20:43:43,182 kilosort.template_matching DEBUG     
+2025-06-16 20:43:43,184 kilosort.template_matching DEBUG    Batch 0
+2025-06-16 20:43:43,184 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    CPU usage:    28.20 %
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    Memory:       20.65 %     |    155.84   /   754.60 GB
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:43,185 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:47,480 kilosort.template_matching DEBUG     
+2025-06-16 20:43:47,480 kilosort.template_matching DEBUG    Batch 100
+2025-06-16 20:43:47,480 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:47,481 kilosort.template_matching DEBUG    CPU usage:    27.00 %
+2025-06-16 20:43:47,481 kilosort.template_matching DEBUG    Memory:       21.69 %     |    163.66   /   754.60 GB
+2025-06-16 20:43:47,481 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-06-16 20:43:47,481 kilosort.template_matching DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:47,481 kilosort.template_matching DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:47,482 kilosort.template_matching DEBUG    Allocated:     0.06 %     |      0.02   /    39.49 GB
+2025-06-16 20:43:47,482 kilosort.template_matching DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:47,482 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:51,696 kilosort.template_matching DEBUG     
+2025-06-16 20:43:51,697 kilosort.template_matching DEBUG    Batch 200
+2025-06-16 20:43:51,697 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:51,698 kilosort.template_matching DEBUG    CPU usage:    27.10 %
+2025-06-16 20:43:51,698 kilosort.template_matching DEBUG    Memory:       22.47 %     |    169.56   /   754.60 GB
+2025-06-16 20:43:51,698 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-06-16 20:43:51,698 kilosort.template_matching DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:51,698 kilosort.template_matching DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:51,698 kilosort.template_matching DEBUG    Allocated:     0.06 %     |      0.02   /    39.49 GB
+2025-06-16 20:43:51,699 kilosort.template_matching DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:51,699 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG     
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG    Batch 278
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG    CPU usage:    27.40 %
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG    Memory:       22.91 %     |    172.86   /   754.60 GB
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG    ------------------------------------------------------
+2025-06-16 20:43:55,156 kilosort.template_matching DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:55,157 kilosort.template_matching DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:55,157 kilosort.template_matching DEBUG    Allocated:     0.06 %     |      0.02   /    39.49 GB
+2025-06-16 20:43:55,157 kilosort.template_matching DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:55,157 kilosort.template_matching DEBUG    ********************************************************
+2025-06-16 20:43:55,181 kilosort.clustering_qr DEBUG     
+2025-06-16 20:43:55,181 kilosort.clustering_qr DEBUG    Cluster center: 0 of 12
+2025-06-16 20:43:55,181 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    CPU usage:    31.20 %
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    Memory:       22.88 %     |    172.62   /   754.60 GB
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:55,182 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:55,194 kilosort.clustering_qr DEBUG    Center 0 | nsp: 30596 | ntemp: 4
+2025-06-16 20:43:55,716 kilosort.clustering_qr DEBUG    Center 1 | nsp: 4878 | ntemp: 2
+2025-06-16 20:43:55,977 kilosort.clustering_qr DEBUG    Center 2 | nsp: 23050 | ntemp: 8
+2025-06-16 20:43:56,559 kilosort.clustering_qr DEBUG    Center 3 | nsp: 6153 | ntemp: 3
+2025-06-16 20:43:56,994 kilosort.clustering_qr DEBUG    Center 4 | nsp: 7538 | ntemp: 2
+2025-06-16 20:43:57,403 kilosort.clustering_qr DEBUG    Center 5 | nsp: 9303 | ntemp: 3
+2025-06-16 20:43:57,848 kilosort.clustering_qr DEBUG    Center 6 | nsp: 16706 | ntemp: 3
+2025-06-16 20:43:58,330 kilosort.clustering_qr DEBUG    Center 7 | nsp: 0 | ntemp: 0
+2025-06-16 20:43:58,330 kilosort.clustering_qr DEBUG    Center 8 | nsp: 0 | ntemp: 0
+2025-06-16 20:43:58,354 kilosort.clustering_qr DEBUG    Center 9 | nsp: 36587 | ntemp: 4
+2025-06-16 20:43:59,389 kilosort.clustering_qr DEBUG     
+2025-06-16 20:43:59,389 kilosort.clustering_qr DEBUG    Cluster center: 10 of 12
+2025-06-16 20:43:59,389 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    CPU usage:    25.80 %
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    Memory:       23.43 %     |    176.79   /   754.60 GB
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    GPU usage:    `conda install pynvml` for GPU usage
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    GPU memory:    2.50 %     |      0.99   /    39.49 GB
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    Allocated:     0.02 %     |      0.01   /    39.49 GB
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    Max alloc:     0.75 %     |      0.30   /    39.49 GB
+2025-06-16 20:43:59,390 kilosort.clustering_qr DEBUG    ********************************************************
+2025-06-16 20:43:59,391 kilosort.clustering_qr DEBUG    Center 10 | nsp: 0 | ntemp: 0
+2025-06-16 20:43:59,483 kilosort.clustering_qr DEBUG    Center 11 | nsp: 24409 | ntemp: 6
